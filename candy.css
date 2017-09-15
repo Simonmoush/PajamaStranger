@@ -2,6 +2,12 @@
 	position:	absolute;
 }
 
+.title {
+	display: block;
+	margin:	auto;
+	max-width:	90%
+}
+
 body{
 	overflow: hidden;
 	background-image: url("./Images/Water.jpg");

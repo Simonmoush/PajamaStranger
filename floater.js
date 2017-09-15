@@ -11,6 +11,7 @@ function Floater(id){
 	this.bob = function() {
 		now = new Date();
 		self.element.style.top = self.initialPosition.y + self.amplitude*Math.sin(now/self.frequency) + "px";
+		self.element.style.zIndex = "-1";
 		//set the position to the initial position plus sin of the current time
 		//make some randomness in the amplitude and frequency
 	}
