@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+	<title>test page</title>
+</head>
+<body style="overflow: hidden; background-image: url('Images/Water.jpg')">
+	<div>
+	<img class="floater" id="candy1" src="Images/Candy/Candy1.png" style="position: absolute">
+	<img class="floater" id="candy2" src="Images/Candy/Candy2.png" style="position: absolute">
+	<img class="floater" id="candy3" src="Images/Candy/Candy3.png" style="position: absolute">
+	<img class="floater" id="candy4" src="Images/Candy/Candy4.png" style="position: absolute">
+	<img class="floater" id="candy5" src="Images/Candy/Candy5.png" style="position: absolute">
+	<img class="floater" id="candy6" src="Images/Candy/Candy6.png" style="position: absolute">
+	<img class="floater" id="candy7" src="Images/Candy/Candy7.png" style="position: absolute">
+	<img class="floater" id="candy8" src="Images/Candy/Candy8.png" style="position: absolute">
+	<img class="floater" id="candy9" src="Images/Candy/Candy9.png" style="position: absolute">
+	<img class="floater" id="candy10" src="Images/Candy/Candy10.png" style="position: absolute">
+	<img class="floater" id="candy11" src="Images/Candy/Candy11.png" style="position: absolute">
+	<img class="floater" id="candy12" src="Images/Candy/Candy12.png" style="position: absolute">
+	<img class="floater" id="candy13" src="Images/Candy/Candy13.png" style="position: absolute">
+	<img class="floater" id="candy14" src="Images/Candy/Candy14.png" style="position: absolute">
+	<img class="floater" id="candy15" src="Images/Candy/Candy15.png" style="position: absolute">
+	</div>
+	<script type='text/javascript'>
+		//Floater object
+		function Floater(id){
+			this.element = document.getElementById(id);
+			this.initialPosition = setRandPos(this.element);
+			
+			this.amplitude = Math.random()*10 + 20;
+			this.frequency = Math.random()*500 + 500;
+			this.size = Math.random()*150 + 150;
+			var self = this;
+			
+			this.bob = function() {
+				now = new Date();
+				self.element.style.top = self.initialPosition.y + self.amplitude*Math.sin(now/self.frequency) + "px";
+				//set the position to the initial position plus sin of the current time
+				//make some randomness in the amplitude and frequency
+			}
+			
+			function setRandPos(elem) {
+				//set the element's position to a random position on the page
+				//return that position
+			
+				var pos = {};
+				pos.x = Math.random()* window.innerWidth;
+				pos.y = Math.random()* window.innerHeight;
+				
+				elem.style.top = pos.y + "px";
+				elem.style.left = pos.x + "px";
+				
+				return pos;
+			}
+			
+			this.element.style.width = this.size + "px"
+			
+			
+			//deform the image appropriately
+			// the higher it is, the smaller it should appear
+			// all the images should be deformed to look like they are on the surface of the water
+		}
+		
+		/*	setup
+			for each img tag with the class "floater"
+			make a floater object for it and call bob on it
+		*/
+		function go() {
+			var floaters = document.getElementsByClassName("floater");
+			for (var i = 0; i < floaters.length; i++) {
+				f = new Floater(floaters[i].id);
+				setInterval(f.bob, 50);
+				//f.bob();
+			}
+		}
+		
+		go();
+	</script>
+</body>
