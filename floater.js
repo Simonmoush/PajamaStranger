@@ -6,14 +6,33 @@ function Floater(id){
 	this.amplitude = Math.random()*10 + 20;
 	this.frequency = Math.random()*500 + 500;
 	this.size = Math.random()*20 + 150;
-	var self = this;
+
+	this.candy = this.element.children[0];
+	this.candyXamp = Math.random()*10 + 5;
+	this.candyZamp = Math.random()*40;
+	this.candyXcenter = 40;
+
+	this.candyXfreq= Math.random()*500 + 500;
+	this.candyZfreq= Math.random()*500 + 500;
+
+
 	
+	var self = this;
 	this.bob = function() {
-		now = new Date();
-		self.element.style.top = self.initialPosition.y + self.amplitude*Math.sin(now/self.frequency) + "px";
-		self.element.style.zIndex = "-1";
 		//set the position to the initial position plus sin of the current time
 		//make some randomness in the amplitude and frequency
+		var now = new Date();
+		self.element.style.top = self.initialPosition.y + self.amplitude*Math.sin(now/self.frequency) + "px";
+		
+		self.element.style.zIndex = "-1";
+
+
+		//now rotate the inner element in the x and z directions.
+		// X should go from around 35 to 45
+		// Z should go from around -20 to +20
+
+		self.candy.style.transform = "rotateX(" + self.candyXcenter + self.candyXamp*Math.sin(now/self.candyXfreq) + "deg)";
+		self.candy.style.transform = "rotateZ(" + self.candyZamp*Math.sin(now/self.candyZfreq) + "deg)";
 	}
 	
 	function setRandPos(elem) {
