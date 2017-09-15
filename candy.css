@@ -1,0 +1,9 @@
+.floater {
+	position:	absolute;
+}
+
+body{
+	overflow: hidden;
+	background-image: url("./Images/Water.jpg");
+	background-size: cover;
+}
