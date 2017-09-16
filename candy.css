@@ -1,12 +1,10 @@
 .floater {
 	position:	absolute;
-	transform:	rotateX(40deg);
 }
 
 .candy{
 	position:	relative;
 	width:		100%;
-	transform:	rotateZ(0deg);
 }
 
 .title {
