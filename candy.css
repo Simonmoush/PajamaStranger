@@ -1,3 +1,18 @@
+@font-face{
+	font-family: 'chi';
+	src: url('./fonts/candy2.ttf') format("truetype");
+}
+
+@font-face{
+	font-family: 'wic';
+	src: url('./fonts/WickedGrit.ttf') format("truetype");
+}
+
+@font-face{
+	font-family: 'test';
+	src: url('./fonts/testfont.otf') format("opentype");
+}
+
 .floater {
 	position:	absolute;
 }
@@ -11,7 +26,8 @@
 	display: block;
 	position: relative;
 	margin:	auto;
-	max-width:	90%
+	max-width:	90%;
+	font-family: 'chi';
 }
 
 body{
