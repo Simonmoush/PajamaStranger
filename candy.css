@@ -41,6 +41,9 @@ body{
 
 .littleTitle {
 	font-size: 3em;
+}
+
+.title a {
 	text-decoration: none;
 }
 
