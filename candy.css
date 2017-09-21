@@ -30,6 +30,10 @@
 	font-family: 'chi';
 }
 
+.subtitle {
+
+}
+
 body{
 	overflow: hidden;
 	background-image: url("./Images/Water.jpg");

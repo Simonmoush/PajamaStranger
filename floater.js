@@ -1,36 +1,44 @@
 //Floater object
 function Floater(id){
 	this.element = document.getElementById(id);
-	this.initialPosition = setRandPos(this.element);
-	
-	this.amplitude = Math.random()*10 + 20;
-	this.frequency = Math.random()*500 + 500;
-	this.size = Math.random()*20 + 150;
-
 	this.candy = this.element.children[0];
-	this.candyXamp = Math.random()*5 + 5;
-	this.candyZamp = Math.random()*40;
-	this.candyXcenter = 40;
+	this.size = Math.random()*20 + 150;
+	this.element.style.width = this.size + "px"
+	this.initialPosition = setRandPos(this.element);
 
-	this.candyXfreq= Math.random()*500 + 500;
-	this.candyZfreq= Math.random()*500 + 500;
+	
+	//POSITION
+	this.posAmp = Math.random()*10 + 20; // position oscillation amplitude
+	this.posFreq = Math.random()*500 + 500; // speed of position oscillation
+
+	// x y rotation is applied to the image inside the floater div to make it rotate after perspective has been applied
+	//X ROTATION
+	this.candyRotXCenter = 40; // image is rotated 40deg around the x axis to appear on the surface of the water
+	this.candyRotXAmp = Math.random()*5 + 5; // x rotation varies anywhere between 35 and 45
+	this.candyRotXFreq = Math.random()*500 + 500; // frequency of this rotation
+
+	//Y ROTATION
+	this.candyRotYAmp = Math.random()*20; // y rotation varies anywhere between -20 and 20 degrees
+	this.candyRotYFreq = Math.random()*500 + 500; // frequency of this rotation
 	
 	var self = this;
 	this.bob = function() {
-		//set the position to the initial position plus sin of the current time
-		//make some randomness in the amplitude and frequency
+		//set the Y position to the initial Y position plus sine of the current time
 		var now = new Date();
-		self.element.style.top = self.initialPosition.y + self.amplitude*Math.sin(now/self.frequency) + "px";
-		
+		self.element.style.top = self.initialPosition.y + self.posAmp*Math.sin(now/self.posFreq) + "px";
+
+		//now rotate the inner element in the x and y directions.
+
+		if (	isNaN(self.candyRotXCenter) ||
+				isNaN(self.candyRotXAmp) ||
+				isNaN(self.candyRotXFreq) ||
+				isNaN(self.candyRotYAmp) ||
+				isNaN(self.candyRotYFreq)
+			){ console.log("NAN"); }
+
+		self.candy.style.transform = "rotateX(" + self.candyRotXCenter + self.candyRotXAmp*Math.sin(now/self.candyRotXFreq) + "deg) rotateY(" + self.candyRotYAmp*Math.sin(now/self.candyRotYFreq) + "deg)";
+
 		self.element.style.zIndex = "-1";
-
-
-		//now rotate the inner element in the x and z directions.
-		// X should go from around 35 to 45
-		// Z should go from around -20 to +20
-
-		self.element.style.transform = "rotateX(" + self.candyXcenter + self.candyXamp*Math.sin(now/self.candyXfreq) + "deg)";
-		self.candy.style.transform = "rotateZ(" + self.candyZamp*Math.sin(now/self.candyZfreq) + "deg)";
 	}
 	
 	function setRandPos(elem) {
@@ -38,20 +46,18 @@ function Floater(id){
 		//return that position
 	
 		var pos = {};
-		pos.x = Math.random()* window.innerWidth;
-		pos.y = Math.random()* window.innerHeight;
+
+		var x = (Math.random() * window.innerWidth) - parseInt(elem.style.width);
+		pos.x = x;
+
+		var y = (Math.random() * window.innerHeight) - parseInt(elem.style.width);
+		pos.y = y;
 		
 		elem.style.top = pos.y + "px";
 		elem.style.left = pos.x + "px";
 		
 		return pos;
 	}
-	
-	this.element.style.width = this.size + "px"
-	
-	//deform the image appropriately
-	// the higher it is, the smaller it should appear
-	// all the images should be deformed to look like they are on the surface of the water
 }
 
 /*	setup
@@ -66,8 +72,7 @@ function go() {
 	var floaters = document.getElementsByClassName("floater");
 	for (var i = 0; i < floaters.length; i++) {
 		f = new Floater(floaters[i].id);
-		setInterval(f.bob, 50);
-		//f.bob();
+		setInterval(f.bob, 100);
 	}
 }
 
