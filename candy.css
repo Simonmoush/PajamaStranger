@@ -11,37 +11,36 @@
 body{
 	overflow: hidden;
 	background-image: url("./Images/Water.jpg");
-	background-size: cover;
+	width: 100%;
+	background-size: 100% 100%;
 }
 
 .floater {
-	position:	absolute;
+	position: absolute;
 }
 
 .candy{
-	width:		100%;
+	width: 100%;
 }
 
 .title {
-	display: block;
-	margin:	auto;
 	width: 100%;
 	text-align: center;
-
+	margin: 10px;
+	line-height: .9;
+	font-family: 'sugar';
+	color: #ff00d8;
 }
 
 .bigTitle {
 	animation-name: changeColor;
 	animation-duration: 3s;
 	animation-iteration-count: infinite;
-
 	font-size: 8em;
-	font-family: 'sugar';
-	color: #ff00d8;
 }
 
 .littleTitle {
-	font-size: 2em;
+	font-size: 3em;
 }
 
 @keyframes changeColor{
@@ -52,10 +51,11 @@ body{
 
 .note {
 	font-family: sans-serif;
+	font-size: 1.5em;
 	position: absolute;
-	bottom: 10px;
+	bottom: 40px;
 	width: 30%;
-	padding: 80px;
+	padding: 60px;
 	margin: 25px;
 	background-size: 100% 100%;
 }
@@ -63,12 +63,14 @@ body{
 .note1 {
 	left: 10px;
 	background-image: url("./Images/text_bubbles.png");
+	transform: rotateZ(10deg);
 	
 }
 
 .note2 {
 	right: 10px;
 	background-image: url("./Images/sticky-note.png");
+	transform: rotateZ(-10deg);
 }
 
 .chinese{
@@ -76,3 +78,6 @@ body{
 	display: none;
 }
 
+.spanish{
+	display: none;
+}

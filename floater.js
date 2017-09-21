@@ -25,7 +25,7 @@ function Floater(id){
 	this.bob = function() {
 		//set the Y position to the initial Y position plus sine of the current time
 		var now = new Date();
-		self.element.style.top = self.initialPosition.y + self.posAmp*Math.sin(now/self.posFreq) + "px";
+		self.element.style.top = (self.initialPosition.y + self.posAmp*Math.sin(now/self.posFreq)) + "px";
 
 		//now rotate the inner element in the x and y directions.
 		self.candy.style.transform = "rotateX(" + (self.candyRotXCenter + self.candyRotXAmp*Math.sin(now/self.candyRotXFreq)) + "deg) rotateY(" + (self.candyRotYAmp*Math.sin(now/self.candyRotYFreq)) + "deg)";
@@ -34,21 +34,15 @@ function Floater(id){
 	}
 	
 	function setRandPos(elem) {
-		//set the element's position to a random position on the page
-		//return that position
-	
-		var pos = {};
+		var pos = {}
 
-		var x = (Math.random() * window.innerWidth) - parseInt(elem.style.width);
-		pos.x = x;
+		pos.x = Math.random()*100;
+		elem.style.left = pos.x + "%";
 
-		var y = (Math.random() * window.innerHeight) - parseInt(elem.style.width);
-		pos.y = y;
-		
-		elem.style.top = pos.y + "px";
-		elem.style.left = pos.x + "px";
-		
+		pos.y = Math.random() * window.innerHeight;
+
 		return pos;
+
 	}
 }
 
@@ -57,9 +51,6 @@ function Floater(id){
 	make a floater object for it and call bob on it
 */
 function setup() {
-	// set the background size
-	document.body.style.width = window.innerWidth + "px";
-	document.body.style.height = window.innerHeight + "px";
 
 	var floaterElements = document.getElementsByClassName("floater");
 	var floaters = [];
@@ -76,8 +67,14 @@ function go(){
 
 	function doBob(){
 		for (var f = 0; f < floaters.length; f++) {
+			// do the bob
 			floaters[f].bob();
 		}
+
+		// set the background height to be the full page height
+		document.body.style.height = window.innerHeight + "px";
+
+
 		window.requestAnimationFrame(doBob);
 	}
 
