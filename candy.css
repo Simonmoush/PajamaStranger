@@ -1,37 +1,11 @@
 @font-face{
 	font-family: 'chi';
-	src: url('./fonts/candy2.ttf') format("truetype");
+	src: url(./fonts/FZKaTong-s.TTF)
 }
 
 @font-face{
-	font-family: 'wic';
-	src: url('./fonts/WickedGrit.ttf') format("truetype");
-}
-
-@font-face{
-	font-family: 'test';
-	src: url('./fonts/testfont.otf') format("opentype");
-}
-
-.floater {
-	position:	absolute;
-}
-
-.candy{
-	position:	relative;
-	width:		100%;
-}
-
-.title {
-	display: block;
-	position: relative;
-	margin:	auto;
-	max-width:	90%;
-	font-family: 'chi';
-}
-
-.subtitle {
-
+	font-family: 'sugar';
+	src: url(./fonts/Baloo-Regular.ttf);
 }
 
 body{
@@ -39,3 +13,66 @@ body{
 	background-image: url("./Images/Water.jpg");
 	background-size: cover;
 }
+
+.floater {
+	position:	absolute;
+}
+
+.candy{
+	width:		100%;
+}
+
+.title {
+	display: block;
+	margin:	auto;
+	width: 100%;
+	text-align: center;
+
+}
+
+.bigTitle {
+	animation-name: changeColor;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+
+	font-size: 8em;
+	font-family: 'sugar';
+	color: #ff00d8;
+}
+
+.littleTitle {
+	font-size: 2em;
+}
+
+@keyframes changeColor{
+	0%		{color: #ff00b4}
+	50%		{color: #c0f}
+	100%	{color: #ff00b4}
+}
+
+.note {
+	font-family: sans-serif;
+	position: absolute;
+	bottom: 10px;
+	width: 30%;
+	padding: 80px;
+	margin: 25px;
+	background-size: 100% 100%;
+}
+
+.note1 {
+	left: 10px;
+	background-image: url("./Images/text_bubbles.png");
+	
+}
+
+.note2 {
+	right: 10px;
+	background-image: url("./Images/sticky-note.png");
+}
+
+.chinese{
+	font-family: 'chi';
+	display: none;
+}
+
