@@ -28,15 +28,7 @@ function Floater(id){
 		self.element.style.top = self.initialPosition.y + self.posAmp*Math.sin(now/self.posFreq) + "px";
 
 		//now rotate the inner element in the x and y directions.
-
-		if (	isNaN(self.candyRotXCenter) ||
-				isNaN(self.candyRotXAmp) ||
-				isNaN(self.candyRotXFreq) ||
-				isNaN(self.candyRotYAmp) ||
-				isNaN(self.candyRotYFreq)
-			){ console.log("NAN"); }
-
-		self.candy.style.transform = "rotateX(" + self.candyRotXCenter + self.candyRotXAmp*Math.sin(now/self.candyRotXFreq) + "deg) rotateY(" + self.candyRotYAmp*Math.sin(now/self.candyRotYFreq) + "deg)";
+		self.candy.style.transform = "rotateX(" + (self.candyRotXCenter + self.candyRotXAmp*Math.sin(now/self.candyRotXFreq)) + "deg) rotateY(" + (self.candyRotYAmp*Math.sin(now/self.candyRotYFreq)) + "deg)";
 
 		self.element.style.zIndex = "-1";
 	}
@@ -64,16 +56,33 @@ function Floater(id){
 	for each img tag with the class "floater"
 	make a floater object for it and call bob on it
 */
-function go() {
+function setup() {
 	// set the background size
 	document.body.style.width = window.innerWidth + "px";
 	document.body.style.height = window.innerHeight + "px";
 
-	var floaters = document.getElementsByClassName("floater");
-	for (var i = 0; i < floaters.length; i++) {
-		f = new Floater(floaters[i].id);
-		setInterval(f.bob, 100);
+	var floaterElements = document.getElementsByClassName("floater");
+	var floaters = [];
+	for (var i = 0; i < floaterElements.length; i++) {
+		f = new Floater(floaterElements[i].id);
+		floaters.push(f);
 	}
+	return floaters;
+}
+
+function go(){
+
+	var floaters = setup();
+
+	function doBob(){
+		for (var f = 0; f < floaters.length; f++) {
+			floaters[f].bob();
+		}
+		window.requestAnimationFrame(doBob);
+	}
+
+	window.requestAnimationFrame(doBob);
 }
 
 go();
+
