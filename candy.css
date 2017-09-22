@@ -30,6 +30,7 @@ html{
 	line-height: .9;
 	font-family: 'sugar';
 	color: #ff00d8;
+	text-shadow: 2px 2px 10px #000000;
 }
 
 .bigTitle {
