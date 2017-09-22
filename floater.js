@@ -28,7 +28,9 @@ function Floater(id){
 		self.element.style.top = (self.initialPosition.y + self.posAmp*Math.sin(now/self.posFreq)) + "px";
 
 		//now rotate the inner element in the x and y directions.
-		self.candy.style.transform = "rotateX(" + (self.candyRotXCenter + self.candyRotXAmp*Math.sin(now/self.candyRotXFreq)) + "deg) rotateY(" + (self.candyRotYAmp*Math.sin(now/self.candyRotYFreq)) + "deg)";
+		if(bowser.name != "Safari") {
+			self.candy.style.transform = "rotateX(" + (self.candyRotXCenter + self.candyRotXAmp*Math.sin(now/self.candyRotXFreq)) + "deg) rotateY(" + (self.candyRotYAmp*Math.sin(now/self.candyRotYFreq)) + "deg)";
+		}
 
 		self.element.style.zIndex = "-1";
 	}
@@ -108,8 +110,6 @@ document.onclick = function(event) {
 }
 
 function go(){
-	console.log(bowser.name);
-
 	//setup
 	var floaterElements = document.getElementsByClassName("floater");
 	var floaters = [];
