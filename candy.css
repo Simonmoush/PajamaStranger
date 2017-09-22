@@ -13,6 +13,8 @@ html{
 	background-image: url("./Images/Water.jpg");
 	background-size: cover;
 	background-color: #008ce4;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .floater {
