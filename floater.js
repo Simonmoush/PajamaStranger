@@ -49,7 +49,9 @@ function Floater(id){
 }
 
 window.onresize = function(event) {
-	document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (window.innerHeight + "px");
+	var body = document.body, html = document.documentElement;
+	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight, window.innerHeight );
+	document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (Math.max(height + "px");
 }
 
 document.onclick = function(event) {
@@ -115,7 +117,11 @@ document.onclick = function(event) {
 
 function go(){
 	//setup
-	document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (window.innerHeight + "px");
+	var body = document.body, html = document.documentElement;
+
+	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight, window.innerHeight );
+
+	document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (Math.max(height + "px");
 	var floaterElements = document.getElementsByClassName("floater");
 	var floaters = [];
 
