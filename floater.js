@@ -108,6 +108,7 @@ document.onclick = function(event) {
 }
 
 function go(){
+	console.log(bowser.name);
 
 	//setup
 	var floaterElements = document.getElementsByClassName("floater");
