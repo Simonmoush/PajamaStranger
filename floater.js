@@ -48,6 +48,10 @@ function Floater(id){
 	}
 }
 
+window.onresize = function(event) {
+	document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (window.innerHeight + "px");
+}
+
 document.onclick = function(event) {
 	function rotateLang(lang){
 		if(lang == "en"){
@@ -111,6 +115,7 @@ document.onclick = function(event) {
 
 function go(){
 	//setup
+	document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (window.innerHeight + "px");
 	var floaterElements = document.getElementsByClassName("floater");
 	var floaters = [];
 
@@ -145,7 +150,6 @@ function go(){
 			floaters[f].bob();
 		}
 
-		document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (window.innerHeight + "px");
 
 		// do it again
 		window.requestAnimationFrame(doBob);
