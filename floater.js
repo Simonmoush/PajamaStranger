@@ -46,26 +46,38 @@ function Floater(id){
 	}
 }
 
-/*	setup
-	for each img tag with the class "floater"
-	make a floater object for it and call bob on it
-*/
-function setup() {
+function go(){
 
+	//setup
 	var floaterElements = document.getElementsByClassName("floater");
 	var floaters = [];
+
 	for (var i = 0; i < floaterElements.length; i++) {
 		f = new Floater(floaterElements[i].id);
 		floaters.push(f);
 	}
-	return floaters;
-}
 
-function go(){
+	// turn off all spanish elements and save their old display
+	var spanishElements = document.getElementsByClassName("spanish");
+	for (var i = 0; i < spanishElements.length; i++){
+		spanishElements[i].setAttribute("originalDisplay", spanishElements[i].style.display);
+		spanishElements[i].style.display = "none";
+	}
 
-	var floaters = setup();
+	// turn off all chinese elements
+	var chineseElements = document.getElementsByClassName("chinese");
+	for (var i = 0; i < chineseElements.length; i++){
+		chineseElements[i].setAttribute("originalDisplay", chineseElements[i].style.display);
+		chineseElements[i].style.display = "none";
+	}
 
-	function doBob(){
+	// save the old display values for the english
+	var englishElements = document.getElementsByClassName("english");
+	for (var i = 0; i < englishElements.length; i++){
+		englishElements[i].setAttribute("originalDisplay", englishElements[i].style.display);
+	}
+	
+	function doBob(){ // loops
 		for (var f = 0; f < floaters.length; f++) {
 			// do the bob
 			floaters[f].bob();
@@ -74,12 +86,74 @@ function go(){
 		// set the background height to be the full page height
 		document.body.style.height = window.innerHeight + "px";
 
-
+		// do it again
 		window.requestAnimationFrame(doBob);
 	}
-
+	
+	// start the animation
 	window.requestAnimationFrame(doBob);
 }
 
 go();
 
+
+document.onclick = function(event) {
+	function rotateLang(lang){
+		if(lang == "en"){
+			// turn the page spanish
+
+			// turn off all english elements
+			var englishElements = document.getElementsByClassName("english");
+			for (var i = 0; i < englishElements.length; i++){
+				englishElements[i].style.display = "none";
+			}
+
+			// turn on all spanish elements
+			var spanishElements = document.getElementsByClassName("spanish");
+			for (var i = 0; i < spanishElements.length; i++){
+				spanishElements[i].style.display = spanishElements[i].getAttribute("originalDisplay");
+			}
+
+			return "es";
+		}else if (lang == "es"){
+			// turn the page chinese
+
+			// turn off all spanish elements
+			var spanishElements = document.getElementsByClassName("spanish");
+			for (var i = 0; i < spanishElements.length; i++){
+				spanishElements[i].style.display = "none";
+			}
+
+			// turn on all chinese elements
+			var chineseElements = document.getElementsByClassName("chinese");
+			for (var i = 0; i < chineseElements.length; i++){
+				chineseElements[i].removeAttribute("style.display");
+				chineseElements[i].style.display = chineseElements[i].getAttribute("originalDisplay");
+			}
+
+			return "zh";
+		}else if (lang == "zh"){
+			// turn the page english
+
+			// turn off all chinese elements
+			var chineseElements = document.getElementsByClassName("chinese");
+			for (var i = 0; i < chineseElements.length; i++){
+				chineseElements[i].style.display = "none";
+			}
+
+			// turn on all english elements
+			var englishElements = document.getElementsByClassName("english");
+			for (var i = 0; i < englishElements.length; i++){
+				englishElements[i].removeAttribute("style.display");
+				englishElements[i].style.display = englishElements[i].getAttribute("originalDisplay");
+			}
+			return "en";
+		}
+	}
+	var metas = document.getElementsByTagName("meta");
+	for(var i = 0; i < metas.length; i++){
+		if (metas[i].getAttribute("http-equiv") == "Content-Language"){
+			metas[i].content = rotateLang(metas[i].content);
+		}
+	}
+}
