@@ -83,9 +83,6 @@ function go(){
 			floaters[f].bob();
 		}
 
-		// set the background height to be the full page height
-		document.body.style.height = window.innerHeight + "px";
-
 		// do it again
 		window.requestAnimationFrame(doBob);
 	}

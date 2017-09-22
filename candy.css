@@ -8,11 +8,10 @@
 	src: url(./fonts/Baloo-Regular.ttf);
 }
 
-body{
-	overflow: hidden;
+html{
+	overflow-x: hidden;
 	background-image: url("./Images/Water.jpg");
-	width: 100%;
-	background-size: 100% 100%;
+	background-size: cover;
 }
 
 .floater {
@@ -58,26 +57,29 @@ body{
 	100%	{color: #ff00b4}
 }
 
+#notes{
+	width: 100%;
+	margin-top: 10%;
+}
 .note {
 	font-family: sans-serif;
 	font-size: 1.5em;
-	position: absolute;
-	bottom: 40px;
 	width: 30%;
 	padding: 60px;
 	margin: 25px;
 	background-size: 100% 100%;
+	position: absolute;
 }
 
 .note1 {
-	left: 10px;
+	left: 0px;
 	background-image: url("./Images/text_bubbles.png");
 	transform: rotateZ(10deg);
 	
 }
 
 .note2 {
-	right: 10px;
+	right: 0px;
 	background-image: url("./Images/sticky-note.png");
 	transform: rotateZ(-10deg);
 }
