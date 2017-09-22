@@ -145,6 +145,8 @@ function go(){
 			floaters[f].bob();
 		}
 
+		document.documentElement.style.backgroundSize = (window.innerWidth + "px") + " " + (window.innerHeight + "px");
+
 		// do it again
 		window.requestAnimationFrame(doBob);
 	}
