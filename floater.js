@@ -46,54 +46,6 @@ function Floater(id){
 	}
 }
 
-function go(){
-
-	//setup
-	var floaterElements = document.getElementsByClassName("floater");
-	var floaters = [];
-
-	for (var i = 0; i < floaterElements.length; i++) {
-		f = new Floater(floaterElements[i].id);
-		floaters.push(f);
-	}
-
-	// turn off all spanish elements and save their old display
-	var spanishElements = document.getElementsByClassName("spanish");
-	for (var i = 0; i < spanishElements.length; i++){
-		spanishElements[i].setAttribute("originalDisplay", spanishElements[i].style.display);
-		spanishElements[i].style.display = "none";
-	}
-
-	// turn off all chinese elements
-	var chineseElements = document.getElementsByClassName("chinese");
-	for (var i = 0; i < chineseElements.length; i++){
-		chineseElements[i].setAttribute("originalDisplay", chineseElements[i].style.display);
-		chineseElements[i].style.display = "none";
-	}
-
-	// save the old display values for the english
-	var englishElements = document.getElementsByClassName("english");
-	for (var i = 0; i < englishElements.length; i++){
-		englishElements[i].setAttribute("originalDisplay", englishElements[i].style.display);
-	}
-	
-	function doBob(){ // loops
-		for (var f = 0; f < floaters.length; f++) {
-			// do the bob
-			floaters[f].bob();
-		}
-
-		// do it again
-		window.requestAnimationFrame(doBob);
-	}
-	
-	// start the animation
-	window.requestAnimationFrame(doBob);
-}
-
-go();
-
-
 document.onclick = function(event) {
 	function rotateLang(lang){
 		if(lang == "en"){
@@ -154,3 +106,55 @@ document.onclick = function(event) {
 		}
 	}
 }
+
+function go(){
+
+	//setup
+	var floaterElements = document.getElementsByClassName("floater");
+	var floaters = [];
+
+	for (var i = 0; i < floaterElements.length; i++) {
+		f = new Floater(floaterElements[i].id);
+		floaters.push(f);
+	}
+
+	// turn off all spanish elements and save their old display
+	var spanishElements = document.getElementsByClassName("spanish");
+	for (var i = 0; i < spanishElements.length; i++){
+		spanishElements[i].setAttribute("originalDisplay", spanishElements[i].style.display);
+		spanishElements[i].style.display = "none";
+	}
+
+	// turn off all chinese elements
+	var chineseElements = document.getElementsByClassName("chinese");
+	for (var i = 0; i < chineseElements.length; i++){
+		chineseElements[i].setAttribute("originalDisplay", chineseElements[i].style.display);
+		chineseElements[i].style.display = "none";
+	}
+
+	// save the old display values for the english
+	var englishElements = document.getElementsByClassName("english");
+	for (var i = 0; i < englishElements.length; i++){
+		englishElements[i].setAttribute("originalDisplay", englishElements[i].style.display);
+	}
+	
+	function doBob(){ // loops
+		for (var f = 0; f < floaters.length; f++) {
+			// do the bob
+			floaters[f].bob();
+		}
+
+		// do it again
+		window.requestAnimationFrame(doBob);
+	}
+	
+	// start the animation
+	window.requestAnimationFrame(doBob);
+
+	// change languages every so often
+	var l = setInterval(document.onclick, 5000);
+}
+
+go();
+
+
